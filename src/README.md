@@ -12,13 +12,13 @@ Uma aplicação FastAPI super simples que permite que estudantes visualizem e se
 1. Instale as dependências:
 
    ```
-   pip install fastapi uvicorn
+   python -m pip install -r requirements.txt
    ```
 
 2. Execute a aplicação:
 
    ```
-   python app.py
+   python -m uvicorn src.app:app --reload
    ```
 
 3. Abra seu navegador e acesse:
@@ -31,6 +31,17 @@ Uma aplicação FastAPI super simples que permite que estudantes visualizem e se
 | ------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Obtém todas as atividades com seus detalhes e contagem atual de participantes |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Inscreve-se em uma atividade                                                |
+| DELETE | `/activities/{activity_name}/signup?email=student@mergington.edu` | Remove a inscrição de um estudante                                          |
+
+Inscrições duplicadas ou em atividades sem vagas retornam HTTP 400. E-mails inválidos ou ausentes retornam HTTP 422; uma atividade inexistente retorna HTTP 404.
+
+## Testes
+
+Na raiz do repositório, execute:
+
+```
+python -m pytest -q
+```
 
 ## Modelo de Dados
 
